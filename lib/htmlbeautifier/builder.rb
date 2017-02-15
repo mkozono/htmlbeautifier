@@ -126,9 +126,9 @@ module HtmlBeautifier
     def empty_lines(*content)
       empty_lines = content.first.scan(%r{\n}).count - 1
       empty_lines = [empty_lines, @preserve_empty_lines].min
+      @new_line = false
       empty_lines.times do
-        new_line
-        emit
+        emit "\n"
       end
       new_line
     end
