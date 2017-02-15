@@ -47,7 +47,7 @@ module HtmlBeautifier
       @empty = false
     end
 
-    def new_line
+    def new_line(*)
       @new_line = true
     end
 
@@ -123,10 +123,13 @@ module HtmlBeautifier
       indent
     end
 
-    def new_lines(*content)
+    def empty_lines(*content)
       empty_lines = content.first.scan(%r{\n}).count - 1
       empty_lines = [empty_lines, @preserve_empty_lines].min
-      @output << "\n" * empty_lines
+      empty_lines.times do
+        new_line
+        emit
+      end
       new_line
     end
 

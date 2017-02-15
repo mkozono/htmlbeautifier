@@ -45,8 +45,10 @@ module HtmlBeautifier
        :close_element],
       [%r{<#{ELEMENT_CONTENT}>}om,
        :open_element],
-      [%r{(\s*\r?\n\s*)+}om,
-       :new_lines],
+      [%r{[\r\n\s]{2,}}om,
+       :empty_lines],
+      [%r{\s*\r?\n\s*}om,
+       :new_line],
       [%r{[^<\n]+},
        :text]]
 
